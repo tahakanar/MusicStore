@@ -1,0 +1,8 @@
+﻿@model ShoppingChart
+@{ 
+    Layout = null;
+}
+
+<a href="@Url.Action("ShoppingChart", "Home")" class="shopping-cart">
+    <i class="fa fa-shopping-cart mr-1 sepet"></i><span class="badge badge-secondary">@Model.Items.Sum(p=>p.Quantity)</span> Sepetiniz
+</a>

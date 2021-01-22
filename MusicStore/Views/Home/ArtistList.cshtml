@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MusicStore.Data.Artist>
+@{
+    ViewBag.Title = "Sanatçılar";
+}
+
+<h2>Sanatçılar</h2>
+
+<div class="row d-flex flex-wrap">
+    @foreach (var artist in Model)
+    {
+        <div class="col-4 mb-2">
+            <div class="card">
+                <img src="data:image/jpeg;base64, @Convert.ToBase64String(artist.Photo)" class="card-img-top" alt="@artist.Name" />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @artist.Name
+                    </h5>
+                    <p class="card-text">
+                        <i class="fa fa-fw fa-compact-disc"></i> @artist.Albums.Count
+                    </p>
+                    <p class="card-text">
+                        <a href="@Url.RouteUrl("Artist", new { Name = artist.Name.ToSafeUrlString(), Id = artist.Id })"> Tüm Albümleri </a>    
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div> 

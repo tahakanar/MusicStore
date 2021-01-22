@@ -1,0 +1,14 @@
+﻿@model MusicStore.Data.Genre
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h2>@Model.Name</h2>
+ 
+<div class="row d-flex flex-wrap">
+    @foreach (var album in Model.Albums)
+    {
+        @Html.Partial("AlbumBox", album)
+        
+    }
+</div> 

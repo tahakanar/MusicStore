@@ -1,0 +1,31 @@
+﻿@model MusicStore.Data.Genre
+@{
+    ViewBag.Title = "Tür Ekleme";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-row">
+        <div class="col-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name )
+            </div>
+        </div>
+    </div>
+
+    <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+        <i class="fa fa-times"></i> İptal
+    </a>
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Kaydet
+    </button>
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

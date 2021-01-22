@@ -1,0 +1,72 @@
+﻿@model ShoppingChart
+@{
+    ViewBag.Title = "Sepetim";
+    var rowNum = 0;
+}
+
+<h2 class="sepetim">Sepetim</h2>
+
+
+@if (Model.Items.Count > 0)
+{
+    <div class="p-1 text-right">
+        <a class="btn btn-link" href="@Url.Action("ClearShoppingChart")"><i class="fa fa-trash"></i> Sepeti Boşalt</a>
+    </div>
+
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th>Sıra No.</th>
+                <th>Foto</th>
+                <th>Album Adı</th>
+                <th>Fiyat</th>
+                <th>Miktar</th>
+                <th>Tutar</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chartItem in Model.Items)
+            {
+                <tr>
+                    <td>@(++rowNum)</td>
+                    <td>
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(chartItem.CoverImage)" class="" alt="@chartItem.Name" height="96" />
+                    </td>
+                    <td>
+                        <b>@chartItem.Name</b>
+                    </td>
+                    <td>
+                        @chartItem.Price.ToString("c2")
+                    </td>
+                    <td>
+                        @chartItem.Quantity.ToString("n0")
+                    </td>
+                    <td>
+                        @chartItem.Amount.ToString("c2")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("DecreaseChartItem", new { Id = chartItem.AlbumId})" class="btn btn-link"><i class="fa fa-minus"></i> Azalt</a>
+                        <a href="@Url.Action("IncreaseChartItem", new { Id = chartItem.AlbumId})" class="btn btn-link"><i class="fa fa-plus"></i> Ekle</a>
+                        <a href="@Url.Action("RemoveChartItem", new { Id = chartItem.AlbumId})" class="btn btn-link"><i class="fa fa-trash"></i> Çıkart</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="text-right">
+                    Genel Toplam:
+                </td>
+                <td>
+                    @Model.GrandTotal.ToString("c2");
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <p class="p-5 text-center">Sepetinizde henüz ürün bulunmamaktadır</p>
+}
+

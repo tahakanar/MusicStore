@@ -1,0 +1,96 @@
+﻿.field-validation-error {
+    color: red;
+}
+
+#mainHeader {
+    background-image: url('Images/header1.jpg');
+    min-height: 140px;
+}
+.kategori a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    padding: 10px;
+    justify-content:flex-start;
+    border-right:1px solid black;
+    
+}
+
+.kategori a:first-child{
+    border-left:1px solid black;
+}
+#btn-ara{
+    color: white;
+    background-color:orange;
+    line-height: 20px;
+}
+.brand{
+    color:white;
+    font-size:25px;
+    
+}
+
+
+.menubar {
+    background-image: linear-gradient(#dddddd, #cccccc);
+    border-bottom: 1px solid black;
+}
+
+.shopping-cart {
+    border: 1px solid #666666;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    background-color: #352f2f;
+}
+
+.sepet{
+    color:orange;
+}
+.store{
+    color:orange;
+    font-size:larger;
+}
+
+.stack-menu{
+    list-style:none;
+    padding:0;
+}
+.stack-menu li {
+        border: 1px solid #dddddd;
+        padding: 0.5rem;
+        background-image: linear-gradient(#f5f5f5, #f0f0f0);
+}
+
+.sidebar{
+    background-color:orange;
+    color:white;
+    line-height:40px;
+    text-align:center
+}
+
+.sonEklenenler {
+    border-bottom: 2px solid orange;
+    display: inline-block;
+    color: orange;
+    
+}
+    .sonEklenenler:hover {
+        border: 1px solid orange;
+        border-radius: 3px;
+        background-color: orange;
+        color: white;
+    }
+
+.sepetim {
+    border-bottom: 2px solid orange;
+    display: inline-block;
+    color: orange;
+}
+
+.sepetim:hover {
+    border: 1px solid orange;
+    border-radius: 3px;
+    background-color: orange;
+    color: white;
+}

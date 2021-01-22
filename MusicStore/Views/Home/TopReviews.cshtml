@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MusicStore.Data.Album>
+@{ 
+    Layout = null;
+}
+
+<ul class="list-unstyled">
+    @foreach (var album in Model)
+    {
+        <li class="media my-4">
+            <img height="64" class="mr-3" src="data:image/jpeg;base64, @Convert.ToBase64String(album.CoverImage)" alt="@album.Name" />
+            <div class="media-body">
+                <h5 class="mt-0 mb-1">@album.Name</h5>
+                <div class="text-success h5">@album.Price.ToString("c2")</div>
+                <div class="text-right">
+                    <a href="@Url.RouteUrl("Album", new { name = album.Name.ToSafeUrlString(true), id = album.Id})">İncele <i class="fa fa-angle-right"></i></a>
+                </div>
+                <hr />
+            </div>
+        </li>
+        
+    }
+</ul>

@@ -1,0 +1,55 @@
+﻿@model MusicStore.Data.Artist
+@{
+    ViewBag.Title = "Sanatçı Güncelleme";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(p =>p.Photo)
+    <div class="form-row">
+        <div class="col-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-4">
+            <div class="form-group">
+                <div class="d-inline-block" p-2 border shadow-sm>
+                    @if (Model.Photo != null)
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Photo)" height="90" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Images/no-avatar.png" height="90" />
+                    }
+                </div>
+                <small class="d-block p-1">(Değiştirmek istiyorsanız doldurunuz)</small>
+                <div class="custom-file">
+                    @Html.LabelFor(model => model.PhotoFile)
+                    <input type="file" class="custom-file-input" id="customFile" name="PhotoFile">
+                    <label class="custom-file-label" for="customFile" data-browse="Dosya Seç">Fotoğraf Seçiniz...</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+        <i class="fa fa-times"></i> İptal
+    </a>
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Kaydet
+    </button>
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

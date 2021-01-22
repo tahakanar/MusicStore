@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MusicStore.Data.Artist>
+@{
+    ViewBag.Title = "Sanatçı Yönetimi";
+
+    var grid = new WebGrid(Model, rowsPerPage: 10);
+
+
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+
+<div class="border bg-light shadow-sm p-2 text-right">
+    <a href="@Url.Action("Create")" class="btn btn-sm btn-primary">
+        <i class="fa fa-plus"></i> Yeni
+    </a>
+</div>
+
+@grid.GetHtml(
+    tableStyle: "table table-bordered",
+    columns: grid.Columns(
+             grid.Column(header: "Foto", format: @<text>
+             @if (item.Photo != null)
+                        {
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.Photo)" height="90" />
+                        }
+                        else
+                        {
+                             <img src="~/Content/Images/no-avatar.png" height="90" />
+                        }
+            </text>),
+            grid.Column(header: "Sanatçı adı", columnName: "Name", style: "col-10"),
+            grid.Column(header: "İşlemler", format: @<text>
+                    <a href="@Url.Action("Edit", new { id = item.Id } )" class="mr-2 text-secondary"><i class="fa fa-pen"></i></a>
+                    <a href="@Url.Action("Remove", new { id = item.Id } )" class="text-secondary remove-btn"><i class="fa fa-trash"></i></a>
+            </text>)))
+
+
+
+@section scripts {
+    <script>
+
+        $(() => {
+            $('.remove-btn').click(function () {
+                var item = $(this);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'UYARI!',
+                    text: 'Bu kayıt tamamen silinecektir. Devam etmek istiyor musunuz?',
+                    showCancelButton: true,
+                    cancelButtonText: '<i class="fa fa-times"></i> İPTAL',
+                    confirmButtonText: '<i class="fa fa-trash"></i> SiL'
+                })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = $(item).attr('href');
+                        }
+                    });
+
+                return false;
+            });
+        })
+
+
+
+    </script>
+}

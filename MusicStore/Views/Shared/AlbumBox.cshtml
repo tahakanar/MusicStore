@@ -1,0 +1,33 @@
+﻿@model MusicStore.Data.Album
+
+
+<div class="col-4 mb-2">
+    <div class="card">
+        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.CoverImage)" class="card-img-top" alt="@Model.Name" />
+        <div class="card-body">
+            <h5 class="card-title">
+                @Model.Name
+            </h5>
+            <p class="card-text">
+                <div class="small text-secondary">
+                    <a href="@Url.RouteUrl("Genre", new { Name = Model.Genre.Name.ToSafeUrlString(), Id= Model.Genre.Id })">@Model.Genre.Name</a>
+                </div>
+                <div class="small text-secondary">
+                    <a href="@Url.RouteUrl("Artist", new { Name = Model.Artist.Name.ToSafeUrlString(), Id= Model.Artist.Id })">@Model.Artist.Name</a>
+                </div>
+                <div class="text-success">
+                    @Model.Price.ToString("c2")
+                </div>
+            </p>
+            <div class="text-center">
+                <a href="@Url.Action("Add2Chart", new { Id = Model.Id })" class="btn btn-sm btn-success">
+                    <i class="fa fa-shopping-cart mr-1"></i>Sepete Ekle
+                </a>
+                <a href="@Url.RouteUrl("Album", new { name = Model.Name.ToSafeUrlString(true), id = Model.Id})" class="btn btn-sm btn-primary">
+                    <i class="fa fa-search mr-1"></i>İncele
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>

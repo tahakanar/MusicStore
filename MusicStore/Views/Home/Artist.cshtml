@@ -1,0 +1,15 @@
+﻿@model MusicStore.Data.Artist
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Photo)" alt="@Model.Name" height="150" />
+<h2>@Model.Name</h2>
+
+<div class="row d-flex flex-wrap">
+    @foreach (var album in Model.Albums)
+    {
+        @Html.Partial("AlbumBox", album)
+
+    }
+</div> 

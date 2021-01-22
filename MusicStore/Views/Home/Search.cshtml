@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MusicStore.Data.Album>
+@{
+    ViewBag.Title = "Arama Sonuçları";
+}
+
+<h2>@ViewBag.Title</h2>
+<div>Aranan Kelime(ler): @Request["keyword"]</div>
+<div>Bulunan Sonuçlar  : @Model.Count()</div>
+<hr />
+<div class="row d-flex flex-wrap">
+    @foreach (var album in Model)
+    {
+        @Html.Partial("AlbumBox", album)
+
+    }
+</div>
+

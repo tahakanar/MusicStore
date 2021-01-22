@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="h-100">
+    <div id="mainHeader">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="col-2 p-0">
+                        <h1 class="brand">Music<b><span class="store">Store</span></b></h1>
+
+                    </div>
+                   
+                        <div class="col-8 d-flex">
+                            <div class="mr-2 d-flex flex-fill">
+                                <input type="text" name="name" value="" class="form-control" placeholder="Albüm, tür ya da sanatçı arayın..." />
+                            </div>
+                            <div>
+                                <button class="btn" id="btn-ara">Ara</button>
+                            </div>
+                        </div>
+                    
+                        <div class="col-2">
+                            @Html.Action("ShoppingChartButton")
+                        </div>
+                    </div>
+
+            </div>
+     </div>
+
+    <div class="menubar">
+        <div class="container">
+            <div class="kategori">
+                <a href="@Url.Action("Index", "Home")"><i class="fas fa-home"></i></a>
+                <a href="@Url.Action("ArtistList", "Home")">Sanatçılar</a>
+                <a href="@Url.Action("About", "Home")">Hakkımızda</a>
+                <a href="@Url.Action("Contact", "Home")">İletişim</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="">
+        <div class="container border-left border-right shadow-sm h-100">
+            <div class="row m-0">
+                <div class="col-3 p-0 mt-2">
+                    <div class="sidebar">
+                        KATEGORİLER
+                    </div>
+                    @Html.Action("CategoryMenu", "Home")
+                    <hr />
+                    @Html.Action("TopReviews", "Home")
+                </div>
+                <div class="col-9 mt-1">
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["success"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+
+                    @RenderBody()
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+   
+        
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

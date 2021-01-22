@@ -1,0 +1,36 @@
+﻿@model MusicStore.Data.Album
+@{
+    ViewBag.Title = Model.Name;
+}
+
+
+<div class="row">
+    <div class="col-7 p-1">
+        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.CoverImage)" class="img-fluid" alt="@Model.Name" />
+    </div>
+    <div class="col-5 p-2">
+        <h2>@Model.Name</h2>
+        <h5 class="text-success">
+            @Model.Price.ToString("c2")
+        </h5>
+        <div>
+             Yıl: @Model.Year
+        </div>
+        <div>
+            <a href="@Url.RouteUrl("Genre",  new { Name = Model.Genre.Name.ToSafeUrlString(), id = Model.Genre.Id})">@Model.Genre.Name</a>
+        </div>
+        <div>
+            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Artist.Photo)" alt="@Model.Name" height="96" />
+            <br />
+            <a href="@Url.RouteUrl("Artist", new { Name = Model.Artist.Name.ToSafeUrlString(), Id = Model.Artist.Id })" >@Model.Artist.Name</a>
+            <div>
+                <i class="fa fa-eye"></i> @Model.Reviews.ToString("n0")
+            </div>
+            <a href="@Url.Action("Add2Chart", new { Id = Model.Id })" class="btn btn-sm btn-success">
+                <i class="fa fa-shopping-cart mr-1"></i>Sepete Ekle
+            </a>
+        </div>
+    </div>
+</div>
+
+ 
