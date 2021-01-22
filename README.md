@@ -1,2 +1,2 @@
 # MusicStore
-C# Asp.Net Framework ile E-music uygulaması 
+Web Application with C# Asp.Net Framework 
